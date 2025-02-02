@@ -1,25 +1,31 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { assets } from '../../assets/assets'
 import './FoodItem.css'
+import { StoreContext } from '../../context/StoreContext'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart } from '../../slice/CartSlice'
 
 const FoodItem = ({item}:any) => {
-
-  const { name, description, price, image } = item
+ 
   const [itemCount, setItemCount] = useState(0)
-
+  const { id, name, description, price, image } = item
+  //const {cartItems, addToCart, removeFromCart}:any = useContext(StoreContext)
+  const dispatch = useDispatch()
+  
   return (
     <div className='food-item'>
       <div className="food-item-img-container">
         <img className='food-item-img' src={image} alt="image" />
-        {itemCount ?
-            <div className='food-item-counter'>
-              <img onClick={()=>setItemCount(prev => prev - 1)} src={assets.remove_icon_red} alt="" /> 
-              <p>{itemCount}</p>
-              <img onClick={()=>setItemCount(prev => prev + 1)} src={assets.add_icon_green} alt="" /> 
-            </div>
-           : 
-            <img className='add' onClick={() => setItemCount(prev => prev + 1)} src={assets.add_icon_white} alt="" /> 
-        }
+         {/* {!itemCount ?           
+              <img className='add' onClick={() => dispatch(addToCart(item))} src={assets.add_icon_white} alt="" /> 
+            : 
+              <div className='food-item-counter'>
+                <img onClick={()=>setItemCount(prev => prev - 1)} src={assets.remove_icon_red} alt="" /> 
+                <p>{itemCount}</p>
+                <img onClick={()=> dispatch(addToCart(item))} src={assets.add_icon_green} alt="" /> 
+              </div>
+        } */}
+        <button onClick={()=> dispatch(addToCart(item))}>add</button>
       </div>
       <div className="food-item-info">
         <div className="food-item-name-rating">
