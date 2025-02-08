@@ -21,7 +21,7 @@ const NavBar = () => {
             <NavLink to='/cart'>
               <img src={assets.basket_icon} alt="" />
             <div className="dot"></div>
-            </NavLink>
+            </NavLink>k
             
           </div>
           <button>sign in</button>

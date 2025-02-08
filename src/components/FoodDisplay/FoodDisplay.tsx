@@ -5,7 +5,7 @@ import FoodItem from "../FoodItem/FoodItem"
 import { food_list } from "../../assets/assets"
 
 
-const FoodDisplay = () => {
+const FoodDisplay = ({category}) => {
 
    
   return (
@@ -13,9 +13,9 @@ const FoodDisplay = () => {
         <h2>Top dishes near you </h2>
         <div className="food-display-list">
             {food_list.map((item, index) => {
-                return (
-                    <FoodItem key={index} item={item}/>
-                )
+                if( category === "All" || category === item.category ){
+                return (<FoodItem key={index} item={item}/>)              
+                }
             })}
         </div>
     </div>
