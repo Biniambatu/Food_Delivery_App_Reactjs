@@ -26,6 +26,7 @@ const FoodItem = ({item}:any) => {
               </div>
         } */}
         <button onClick={()=> dispatch(addToCart(item))}>add</button>
+        
       </div>
       <div className="food-item-info">
         <div className="food-item-name-rating">
